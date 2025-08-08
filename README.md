@@ -2,6 +2,8 @@
 
 A playful, modern web app to extract and download all images from your .docx files. Upload your document, preview your images, and download them all at once—liberate your visuals!
 
+![Unzip My Docs Screenshot](./screenshot.png)
+
 ---
 
 ## 🚀 Features
