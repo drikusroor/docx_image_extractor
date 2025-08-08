@@ -49,5 +49,19 @@ def upload():
 def get_image(uid, filename):
     return send_from_directory(os.path.join(EXTRACT_FOLDER, uid), filename)
 
+@app.route("/download_all/<uid>")
+def download_all(uid):
+    extract_path = os.path.join(EXTRACT_FOLDER, uid)
+    if not os.path.exists(extract_path):
+        return "Not found", 404
+    images = os.listdir(extract_path)
+    if not images:
+        return "No images found", 404
+    zip_path = os.path.join(EXTRACT_FOLDER, f"{uid}.zip")
+    with zipfile.ZipFile(zip_path, "w") as zipf:
+        for image in images:
+            zipf.write(os.path.join(extract_path, image), arcname=image)
+    return send_from_directory(EXTRACT_FOLDER, f"{uid}.zip", as_attachment=True)
+
 if __name__ == "__main__":
     app.run(debug=True)

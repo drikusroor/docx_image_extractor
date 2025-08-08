@@ -9,6 +9,7 @@
     <input type="file" id="docxFile">
     <button onclick="uploadDocx()">Upload</button>
     <div id="images"></div>
+    <button id="downloadAllBtn" style="display:none">Download All Images</button>
 
     <script>
         async function uploadDocx() {
@@ -28,6 +29,7 @@
             const imagesDiv = document.getElementById('images');
             imagesDiv.innerHTML = '';
 
+            const downloadBtn = document.getElementById('downloadAllBtn');
             if (data.images) {
                 data.images.forEach(image => {
                     const img = document.createElement('img');
@@ -36,8 +38,13 @@
                     img.style.margin = '10px';
                     imagesDiv.appendChild(img);
                 });
+                downloadBtn.style.display = 'inline-block';
+                downloadBtn.onclick = function() {
+                    window.location = `/download_all/${data.id}`;
+                };
             } else {
                 imagesDiv.innerText = data.error || "Something went wrong.";
+                downloadBtn.style.display = 'none';
             }
         }
     </script>
