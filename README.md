@@ -16,7 +16,7 @@ A playful, modern web app to extract and download all images from your .docx fil
 
 ### 1. Clone the repository
 ```bash
-git clone <your-repo-url>
+git clone git@github.com:drikusroor/docx_image_extractor.git
 cd docx_image_extractor
 ```
 
