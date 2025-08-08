@@ -16,8 +16,18 @@
     </h2>
     <div class="flex flex-col items-center space-y-4 bg-white/90 p-8 rounded-2xl shadow-2xl">
         <input type="file" id="docxFile" class="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-100 file:text-pink-700 hover:file:bg-pink-200" />
-        <button onclick="uploadDocx()" class="bg-gradient-to-r from-pink-500 to-indigo-500 hover:from-pink-600 hover:to-indigo-600 text-white font-bold py-2 px-6 rounded-full transition shadow-lg">Upload & Unzip</button>
-        <button id="downloadAllBtn" style="display:none" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-bold py-2 px-6 rounded-full transition shadow-lg">Download All Images</button>
+        <button onclick="uploadDocx()" class="bg-gradient-to-r from-pink-500 to-indigo-500 hover:from-pink-600 hover:to-indigo-600 text-white font-bold py-2 px-6 rounded-full transition shadow-lg flex items-center justify-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5V21m0-13.5l-4 4m4-4l4 4M21 3H3" />
+            </svg>
+            Upload & Unzip
+        </button>
+        <button id="downloadAllBtn" style="display:none" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-bold py-2 px-6 rounded-full transition shadow-lg flex items-center justify-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5V18a2.25 2.25 0 002.25 2.25h13.5A2.25 2.25 0 0021 18v-1.5M7.5 12.75L12 17.25m0 0l4.5-4.5M12 17.25V3" />
+            </svg>
+            Download All Images
+        </button>
     </div>
     <div id="images" class="flex flex-wrap justify-center mt-8 gap-4"></div>
 
@@ -48,7 +58,7 @@
                     img.style.margin = '10px';
                     imagesDiv.appendChild(img);
                 });
-                downloadBtn.style.display = 'inline-block';
+                downloadBtn.style.display = 'flex';
                 downloadBtn.onclick = function() {
                     window.location = `/download_all/${data.id}`;
                 };
