@@ -1,0 +1,11 @@
+services:
+  web:
+    build: .
+    container_name: docx-image-extractor
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./extracted:/app/extracted
+    environment:
+      - FLASK_ENV=development
