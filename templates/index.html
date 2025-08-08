@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOCX Image Extractor</title>
+</head>
+<body>
+    <h1>Upload a .docx file</h1>
+    <input type="file" id="docxFile">
+    <button onclick="uploadDocx()">Upload</button>
+    <div id="images"></div>
+
+    <script>
+        async function uploadDocx() {
+            const input = document.getElementById('docxFile');
+            const file = input.files[0];
+            if (!file) return alert('Please select a .docx file');
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const res = await fetch('/upload', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await res.json();
+
+            const imagesDiv = document.getElementById('images');
+            imagesDiv.innerHTML = '';
+
+            if (data.images) {
+                data.images.forEach(image => {
+                    const img = document.createElement('img');
+                    img.src = `/images/${data.id}/${image}`;
+                    img.style.width = '200px';
+                    img.style.margin = '10px';
+                    imagesDiv.appendChild(img);
+                });
+            } else {
+                imagesDiv.innerText = data.error || "Something went wrong.";
+            }
+        }
+    </script>
+</body>
+</html>
